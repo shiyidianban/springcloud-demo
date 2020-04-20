@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>springcloud-demo</groupId>
+    <groupId>com.springcloud.demo</groupId>
     <artifactId>springcloud-demo</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -13,6 +13,7 @@
         <module>springcloud-clientmodule</module>
         <module>springcloud-config</module>
         <module>springcloud-gateway</module>
+        <module>springcloud-commondata</module>
     </modules>
 
     <!-- 引入spring boot starter的依赖 -->
@@ -26,7 +27,7 @@
         <java.version>1.8</java.version>
         <project.version>1.0-SNAPSHOT</project.version>
 
-        <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+        <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-platform.version>Cairo-SR7</spring-platform.version>
 
@@ -83,6 +84,12 @@
                 <version>${spring-platform.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
