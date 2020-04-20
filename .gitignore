@@ -2,9 +2,4 @@
 *.iml
 target/
 *.DS_Store
-/soccer-app/src/main/resources/application-local.properties
-/soccer-video/src/main/resources/application-local.properties
-/soccer-gateway/src/main/resources/application-local.properties
-/log/
-/soccer-app/log/
-/soccer-gateway/log/
+*/target/
