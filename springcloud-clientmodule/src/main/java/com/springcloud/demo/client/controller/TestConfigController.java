@@ -25,6 +25,6 @@ public class TestConfigController {
 
     @PostMapping("/postName")
     public String postName(@RequestBody Map<String,String> param){
-        return param.get("name");
+        return userName;
     }
 }

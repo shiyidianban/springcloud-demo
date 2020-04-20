@@ -12,6 +12,7 @@
         <module>springcloud-eureka</module>
         <module>springcloud-clientmodule</module>
         <module>springcloud-config</module>
+        <module>springcloud-gateway</module>
     </modules>
 
     <!-- 引入spring boot starter的依赖 -->
