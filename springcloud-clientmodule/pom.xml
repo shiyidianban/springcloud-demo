@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springcloud-client</artifactId>
+    <artifactId>springcloud-clientmodule</artifactId>
 
     <description>业务模块</description>
     <packaging>pom</packaging>
