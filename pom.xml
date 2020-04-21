@@ -12,8 +12,8 @@
         <module>springcloud-eureka</module>
         <module>springcloud-config</module>
         <module>springcloud-gateway</module>
-        <module>springcloud-commondata</module>
-        <module>springcloud-module</module>
+        <module>springcloud-common</module>
+        <module>springcloud-moudle</module>
     </modules>
 
     <!-- 引入spring boot starter的依赖 -->
