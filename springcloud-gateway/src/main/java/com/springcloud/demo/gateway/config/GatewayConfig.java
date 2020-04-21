@@ -22,9 +22,9 @@ public class GatewayConfig {
                 .route(r -> r.path("/client/**")
                         .filters(f -> f.filter(new RequestTimeFilter())
                                 .addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
-                        .uri("lb://springcloud-clientmodule")
+                        .uri("lb://springcloud-module")
                         .order(0)
-                        .id("springcloud-clientmodule")
+                        .id("springcloud-module")
                 )
                 .build();
     }
