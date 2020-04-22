@@ -20,8 +20,8 @@ spring:
           enabled: true #是否与服务发现组件进行结合，通过 serviceId(必须设置成大写) 转发到具体的服务实例。默认为false，设为true便开启通过服务中心的自动根据 serviceId 创建路由的功能。
           lower-case-service-id: true #允许通过模块名小写代理
       routes:
-        - id: springcloud-module
-          uri: lb://springcloud-module #网关路由到springcloud-client模块，lb指向内部注册模块
+        - id: springcloud-client
+          uri: lb://springcloud-client #网关路由到springcloud-client模块，lb指向内部注册模块
           predicates: #转发谓词，用于设置匹配路由的规则
             - Path=/client/** #通过请求路径匹配
             - Method=GET #通过请求方式匹配

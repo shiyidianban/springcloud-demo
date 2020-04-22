@@ -43,10 +43,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>${druid.version}</version>
+            <groupId>com.springcloud.demo</groupId>
+            <artifactId>common-data</artifactId>
         </dependency>
     </dependencies>
 
