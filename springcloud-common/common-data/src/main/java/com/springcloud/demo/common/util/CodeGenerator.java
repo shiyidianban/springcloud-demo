@@ -81,8 +81,8 @@ public class CodeGenerator {
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://localhost:3306/spring?useUnicode=true&useSSL=false&characterEncoding=utf8");
         dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("spring");
-        dsc.setPassword("spring");
+        dsc.setUsername("root");
+        dsc.setPassword("123456");
         dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
         /** ======================================数据源配置end=============================== **/
@@ -113,7 +113,7 @@ public class CodeGenerator {
         // 父模块名,会拼接到父包名后面作为包
         // pc.setModuleName(scanner("模块名"));
         // 父包名，如果为空，将下面子包名必须写全部， 否则就只需写子包名
-        pc.setParent("com.springcloud.demo");
+        pc.setParent("com.springcloud.demo.client");
         mpg.setPackageInfo(pc);
         /** ======================================包名配置end=============================== **/
         /** ======================================注入配置【通过该配置，可注入自定义参数等操作以实现个性化操作】start=============================== **/
