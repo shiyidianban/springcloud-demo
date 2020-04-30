@@ -3,6 +3,7 @@ package com.springcloud.demo.client.config;
 import com.alibaba.druid.support.http.StatViewServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Map;
  * @author FLY
  * @date 2020-04-20 16:28
  */
+@Configuration
 public class DruidConfiguration {
 
     @Bean

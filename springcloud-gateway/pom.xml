@@ -23,11 +23,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
         <!--配置中心客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
+
         <!--注册中心客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -40,7 +42,9 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+
     </dependencies>
+
     <!-- 添加spring-boot的maven插件，不能少，打jar包时得用 -->
     <build>
         <plugins>
