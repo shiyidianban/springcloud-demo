@@ -1,6 +1,8 @@
 package com.springcloud.demo.client.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springcloud.demo.client.entity.Client;
 import com.springcloud.demo.client.service.ClientService;
 import com.springcloud.demo.common.util.Result;
@@ -53,6 +55,30 @@ public class ClientController {
     @DeleteMapping("/{id}")
     public Result removeClient(@PathVariable Integer id) {
         return Result.success(this.clientService.removeById(id));
+    }
+
+    /**
+     * 分页查询
+     *
+     * @param page
+     * @param client
+     * @return
+     */
+    @GetMapping("/page")
+    public Result getClientPage(Page page, Client client) {
+        return Result.success(this.clientService.page(page, new QueryWrapper<>(client)));
+    }
+
+    /**
+     * 自定义分页查询
+     *
+     * @param page
+     * @param client
+     * @return
+     */
+    @GetMapping("/pageAuto")
+    public Result getClientPageAuto(Page page, Client client) {
+        return Result.success(this.clientService.getClientPageAuto(page, client));
     }
 }
 

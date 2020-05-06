@@ -1,9 +1,8 @@
 package com.springcloud.demo.client.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -17,6 +16,8 @@ import java.time.LocalDateTime;
  * @since 2020-04-30
  */
 @TableName("client")
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +44,7 @@ public class Client implements Serializable {
      * 逻辑删除标志
      */
     @TableField("del_flag")
+    @TableLogic
     private Integer delFlag;
 
     /**

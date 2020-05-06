@@ -1,5 +1,7 @@
 package com.springcloud.demo.client.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springcloud.demo.client.entity.Client;
 import com.springcloud.demo.client.mapper.ClientMapper;
@@ -17,4 +19,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientServiceImpl extends ServiceImpl<ClientMapper, Client> implements ClientService {
 
+    @Override
+    public IPage<Client> getClientPageAuto(Page page, Client client) {
+        return this.baseMapper.selectClientPage(page, client);
+    }
 }
