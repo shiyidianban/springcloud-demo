@@ -21,12 +21,12 @@ public class RequestTimeFilter implements GatewayFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         exchange.getAttributes().put("startTime", System.currentTimeMillis());
-        log.info("===================pre阶段====================");
+        log.info("===================RequestTimeFilter pre阶段====================");
         return chain.filter(exchange).then(
                 Mono.fromRunnable(() -> {
                     Long startTime = exchange.getAttribute("startTime");
                     if (startTime != null) {
-                        log.info("=========post阶段==============，执行路径：{}，所耗时间：{}",exchange.getRequest().getURI().getRawPath(),(System.currentTimeMillis() - startTime) + "ms");
+                        log.info("=========RequestTimeFilter post阶段==============，执行路径：{}，所耗时间：{}", exchange.getRequest().getURI().getRawPath(), (System.currentTimeMillis() - startTime) + "ms");
                     }
                 }));
     }
