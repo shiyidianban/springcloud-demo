@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 2020-04-20 13:55
  */
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/testConfig")
 public class TestConfigController {
 
     @Value("${user.name}")

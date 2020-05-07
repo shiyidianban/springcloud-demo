@@ -113,7 +113,7 @@ public class CodeGenerator {
         // 父模块名,会拼接到父包名后面作为包
         // pc.setModuleName(scanner("模块名"));
         // 父包名，如果为空，将下面子包名必须写全部， 否则就只需写子包名
-        pc.setParent("com.springcloud.demo.client");
+        pc.setParent("com.springcloud.demo.auth");
         mpg.setPackageInfo(pc);
         /** ======================================包名配置end=============================== **/
         /** ======================================注入配置【通过该配置，可注入自定义参数等操作以实现个性化操作】start=============================== **/
