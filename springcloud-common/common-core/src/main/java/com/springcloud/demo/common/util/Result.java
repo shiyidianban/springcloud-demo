@@ -110,6 +110,10 @@ public class Result<T> implements Serializable {
         return restResult(null, RespEnum.FAILED.getCode(), msg);
     }
 
+    public static <T> Result<T> failed(long code,String msg) {
+        return restResult(null, code, msg);
+    }
+
     /**
      * 操作失败并返回报错信息
      *

@@ -1,6 +1,7 @@
 package com.springcloud.demo.client.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.springcloud.demo.client.filter.UserInfoLocal;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,7 @@ public class MpMetaObjectHandler implements MetaObjectHandler {
 
         //设置当前登录用户，此处尚未开发权限系统，暂定admin
         if (null == createBy) {
-            this.setFieldValByName("createBy", "admin", metaObject);
+            this.setFieldValByName("createBy", UserInfoLocal.getUser().getToken(), metaObject);
         }
 
         if (null == createTime) {
@@ -56,7 +57,7 @@ public class MpMetaObjectHandler implements MetaObjectHandler {
         Object updateTime = metaObject.getValue("updateTime");
         //设置当前登录用户，此处尚未开发权限系统，暂定admin
         if (null == updateBy) {
-            this.setFieldValByName("updateBy", "admin", metaObject);
+            this.setFieldValByName("updateBy", UserInfoLocal.getUser().getToken(), metaObject);
         }
 
         if (null == updateTime) {
