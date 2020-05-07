@@ -11,7 +11,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @date 2020-04-20 11:06
  */
 @EnableEurekaClient
-@SpringBootApplication(scanBasePackages = {"com.springcloud.demo.common","com.springcloud.demo.client"})
+@SpringBootApplication(scanBasePackages = {"com.springcloud.demo.client", "com.springcloud.demo.common", "com.springcloud.demo.swagger"})
 public class SpringCloudClientApplication {
 
     public static void main(String[] args) {

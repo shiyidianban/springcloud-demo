@@ -24,11 +24,18 @@ import java.io.IOException;
 @WebFilter
 public class UserInfoFilter implements Filter {
 
+    private String[] whiteUris = new String[]{
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/webjars",
+            "/swagger-ui.html"
+    };
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         RequestFacade requestFacade = (RequestFacade) servletRequest;
-        if (!setLoginUserInfo(requestFacade)) {
-            servletResponse.setCharacterEncoding("utf-8");
+        if (!inWhiteListUrl(requestFacade.getRequestURI()) && !setLoginUserInfo(requestFacade)) {
+            servletResponse.setContentType("text/html;charset=UTF-8");
             servletResponse.getWriter().print(Result.restResult(RespEnum.NO_LOGIN).toString());
             return;
         }
@@ -48,5 +55,19 @@ public class UserInfoFilter implements Filter {
         AuthUserInfo userInfo = new AuthUserInfo(token);
         UserInfoLocal.setUser(userInfo);
         return true;
+    }
+
+    /**
+     * 白名单url放行
+     */
+    private boolean inWhiteListUrl(String requestUri) {
+
+        for (String uri : whiteUris) {
+            if (requestUri.startsWith(uri)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

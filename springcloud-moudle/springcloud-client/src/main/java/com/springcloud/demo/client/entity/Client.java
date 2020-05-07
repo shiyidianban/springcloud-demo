@@ -1,6 +1,8 @@
 package com.springcloud.demo.client.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
@@ -18,6 +20,7 @@ import java.time.LocalDateTime;
 @TableName("client")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@ApiModel(value = "Client", description = "客户端实体")
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,24 +28,28 @@ public class Client implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty(value = "客户端id", dataType = "Integer", name = "id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
      * 客户端名称
      */
+    @ApiModelProperty(value = "客户端名称", dataType = "String ", name = "clientName", required = true)
     @TableField("client_name")
     private String clientName;
 
     /**
      * 客户端路径
      */
+    @ApiModelProperty(value = "客户端路径", dataType = "String ", name = "clientPath", required = true)
     @TableField("client_path")
     private String clientPath;
 
     /**
      * 逻辑删除标志
      */
+    @ApiModelProperty(value = "逻辑删除标志", dataType = "Integer ", name = "delFlag")
     @TableField(value = "del_flag", fill = FieldFill.INSERT)
     @TableLogic
     private Integer delFlag;
@@ -50,24 +57,28 @@ public class Client implements Serializable {
     /**
      * 创建时间
      */
+    @ApiModelProperty(value = "创建时间", dataType = "LocalDateTime ", name = "createTime")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 最后更新时间
      */
+    @ApiModelProperty(value = "最后更新时间", dataType = "LocalDateTime ", name = "updateTime")
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     /**
      * 创建人
      */
+    @ApiModelProperty(value = "创建人", dataType = "String ", name = "createBy")
     @TableField(value = "create_by", fill = FieldFill.INSERT)
     private String createBy;
 
     /**
      * 最后更新人
      */
+    @ApiModelProperty(value = "最后更新人", dataType = "String ", name = "updateBy")
     @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
 
