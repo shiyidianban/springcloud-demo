@@ -30,10 +30,10 @@ import java.util.Set;
 public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
-    private SysUserService userService;
+    private SysUserService sysUserService;
 
     @Autowired
-    private SysRoleService roleService;
+    private SysRoleService sysRoleService;
 
     @Autowired
     private SysMenuService sysMenuService;
@@ -60,13 +60,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
 
         // 从数据库中查询获取该账户信息
-        SysUser sysUser = this.userService.findByUsername(username);
+        SysUser sysUser = this.sysUserService.findByUsername(username);
         if (ObjectUtils.isNull(sysUser)) {
             throw new ServiceException("用户:" + username + ",不存在!");
         }
 
         // 获取用户角色列表
-        List<SysRole> roles = this.roleService.getRoleByUserId(sysUser.getId());
+        List<SysRole> roles = this.sysRoleService.getRoleByUserId(sysUser.getId());
         if (!ObjectUtils.isNull(roles)) {
             for (SysRole role : roles) {
                 // 角色必须是ROLE_开头，可以在数据库中设置
