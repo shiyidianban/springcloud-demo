@@ -1,5 +1,9 @@
 package com.springcloud.demo.gateway.filter;
 
+import com.springcloud.demo.common.enums.RespEnum;
+import com.springcloud.demo.common.util.ConstantsUtil;
+import com.springcloud.demo.common.util.ObjectUtils;
+import com.springcloud.demo.common.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -9,6 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 /**
  * 全局过滤器
@@ -26,11 +32,11 @@ public class GlobalTokenFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         // 获取token
-        String token = exchange.getRequest().getQueryParams().getFirst("token");
-        if (token == null || token.isEmpty()) {
-            log.error("您尚未登陆，请登陆后重试");
+        List tokenList = exchange.getRequest().getHeaders().get(ConstantsUtil.TOKEN);
+        if (ObjectUtils.isNull(tokenList)) {
+            log.error(Result.restResult(RespEnum.NO_LOGIN).toString());
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().writeWith(Flux.just(exchange.getResponse().bufferFactory().wrap("您尚未登陆，请登陆后重试".getBytes())));
+            return exchange.getResponse().writeWith(Flux.just(exchange.getResponse().bufferFactory().wrap(Result.restResult(RespEnum.NO_LOGIN).toString().getBytes())));
         }
 
         //  继续执行下一过滤器/调用接口

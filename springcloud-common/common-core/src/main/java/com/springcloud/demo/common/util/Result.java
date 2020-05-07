@@ -1,5 +1,6 @@
 package com.springcloud.demo.common.util;
 
+import com.alibaba.fastjson.JSONObject;
 import com.springcloud.demo.common.enums.RespEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -30,6 +31,11 @@ public class Result<T> implements Serializable {
 
     public Result() {
         // to do nothing
+    }
+
+    @Override
+    public String toString() {
+        return JSONObject.toJSONString(this);
     }
 
     /**

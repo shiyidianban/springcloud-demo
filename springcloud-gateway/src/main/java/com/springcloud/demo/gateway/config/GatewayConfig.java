@@ -20,8 +20,7 @@ public class GatewayConfig {
     public RouteLocator customerRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r.path("/client/**")
-                        .filters(f -> f.filter(new RequestTimeFilter())
-                                .addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
+                        .filters(f -> f.filter(new RequestTimeFilter()).addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
                         .uri("lb://springcloud-client")
                         .order(0)
                         .id("springcloud-client")
