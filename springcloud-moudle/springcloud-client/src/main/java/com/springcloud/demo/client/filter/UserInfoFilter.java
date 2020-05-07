@@ -1,11 +1,10 @@
 package com.springcloud.demo.client.filter;
 
 import com.springcloud.demo.common.enums.RespEnum;
-import com.springcloud.demo.common.exception.ServiceException;
 import com.springcloud.demo.common.util.ConstantsUtil;
 import com.springcloud.demo.common.util.ObjectUtils;
+import com.springcloud.demo.common.util.Result;
 import org.apache.catalina.connector.RequestFacade;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -28,22 +27,26 @@ public class UserInfoFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         RequestFacade requestFacade = (RequestFacade) servletRequest;
-        setLoginUserInfo(requestFacade);
+        if (!setLoginUserInfo(requestFacade)) {
+            servletResponse.setCharacterEncoding("utf-8");
+            servletResponse.getWriter().print(Result.restResult(RespEnum.NO_LOGIN).toString());
+            return;
+        }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
     /**
      * 设置登录用户信息
-     *
-     * @param servletRequest
      */
-    private void setLoginUserInfo(HttpServletRequest servletRequest) {
+    private Boolean setLoginUserInfo(HttpServletRequest servletRequest) {
         String token = servletRequest.getHeader(ConstantsUtil.TOKEN);
         if (ObjectUtils.isNull(token)) {
-            throw new ServiceException(RespEnum.NO_LOGIN);
+            return false;
         }
 
         AuthUserInfo userInfo = new AuthUserInfo(token);
         UserInfoLocal.setUser(userInfo);
+        return true;
     }
 }

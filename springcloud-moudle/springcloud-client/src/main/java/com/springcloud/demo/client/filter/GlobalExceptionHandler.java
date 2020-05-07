@@ -3,9 +3,6 @@ package com.springcloud.demo.client.filter;
 import com.springcloud.demo.common.exception.ServiceException;
 import com.springcloud.demo.common.util.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,5 +34,14 @@ public class GlobalExceptionHandler {
 
         log.error("", e);
         return Result.failed(e);
+    }
+
+    /**
+     * 拦截捕捉自定义异常 ServiceException.class
+     */
+    @ResponseBody
+    @ExceptionHandler(value = ServiceException.class)
+    public Result myErrorHandler(ServiceException e) {
+        return Result.failed(e.getCode(), e.getMessage());
     }
 }
