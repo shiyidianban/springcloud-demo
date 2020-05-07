@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springcloud.demo.client.entity.Client;
 import com.springcloud.demo.client.service.ClientService;
+import com.springcloud.demo.common.enums.RespEnum;
 import com.springcloud.demo.common.util.ObjectUtils;
 import com.springcloud.demo.common.util.RedisHelper;
 import com.springcloud.demo.common.util.Result;
@@ -47,10 +48,13 @@ public class ClientController {
     })
     @PostMapping
     public Result addClient(@RequestBody Client client) {
-        this.clientService.save(client);
-        //填充缓存，key为client_${id}
-        this.redisHelper.set("client_"+client.getId(), JSONObject.toJSONString(client));
-        return Result.success(Boolean.TRUE);
+        if (this.clientService.save(client)) {
+            //填充缓存，key为client_${id}
+            this.redisHelper.set("client_" + client.getId(), JSONObject.toJSONString(client));
+            return Result.success(client.getId());
+        } else {
+            return Result.restResult(RespEnum.FAILED);
+        }
     }
 
     /**
@@ -86,7 +90,11 @@ public class ClientController {
     })
     @DeleteMapping("/{id}")
     public Result removeClient(@PathVariable Integer id) {
-        return Result.success(this.clientService.removeById(id));
+        if (this.clientService.removeById(id)) {
+            return Result.success(id);
+        } else {
+            return Result.restResult(RespEnum.FAILED);
+        }
     }
 
     /**
