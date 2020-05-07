@@ -84,6 +84,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
 
         redisHelper.set(username, JSONObject.toJSONString(sysUser));
-        return null;
+        return new User(sysUser.getUsername(), sysUser.getPassword(),
+                enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
     }
 }

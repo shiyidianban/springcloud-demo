@@ -11,11 +11,6 @@
 
     <artifactId>common-security</artifactId>
     <dependencies>
-        <!--用户基本信息-->
-        <dependency>
-            <groupId>com.springcloud</groupId>
-            <artifactId>system-api</artifactId>
-        </dependency>
         <!--Security依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
