@@ -1,9 +1,6 @@
 package com.springcloud.demo.order.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -22,7 +19,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("order")
+@TableName("`order`")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,19 +39,20 @@ public class Order implements Serializable {
     @TableField("orderNum")
     private String orderNum;
 
-    @TableField("create_time")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField("update_time")
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
-    @TableField("create_by")
+    @TableField(value = "create_by", fill = FieldFill.INSERT)
     private String createBy;
 
-    @TableField("update_by")
+    @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
 
-    @TableField("del_flag")
+    @TableField(value = "del_flag", fill = FieldFill.INSERT)
+    @TableLogic
     private Integer delFlag;
 
 
