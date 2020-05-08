@@ -25,6 +25,12 @@ public class GatewayConfig {
                         .order(0)
                         .id("springcloud-client")
                 )
+                .route(r -> r.path("/order/**")
+                        .filters(f -> f.filter(new RequestTimeFilter()).addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
+                        .uri("lb://springcloud-order")
+                        .order(0)
+                        .id("springcloud-order")
+                )
                 .build();
     }
 }

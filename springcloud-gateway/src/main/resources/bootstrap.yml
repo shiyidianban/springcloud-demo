@@ -32,6 +32,12 @@ spring:
           filters:
             - RequestTime=true #此处仅需要配置过滤器工厂前缀及其属性值启动即可（注意“-”后面一定要跟空格，否则报错）
 
+        - id: springcloud-order
+          uri: lb://springcloud-order #网关路由到springcloud-client模块，lb指向内部注册模块
+          predicates: #转发谓词，用于设置匹配路由的规则
+            - Path=/order/** #通过请求路径匹配
+            - Method=GET #通过请求方式匹配
+
         - id: springcloud-oauth
           uri: lb://springcloud-oauth
           predicates:
