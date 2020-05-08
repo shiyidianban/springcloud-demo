@@ -5,11 +5,12 @@ import com.springcloud.demo.auth.util.CustomTokenEnhancer;
 import com.springcloud.demo.common.util.ConstantsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
@@ -26,6 +27,9 @@ import javax.sql.DataSource;
  * @author FLY
  * @date 2020-05-07 17:42
  */
+
+@Configuration
+@EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /**
@@ -90,7 +94,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
         //设置令牌存储对象
         endpoints.tokenStore(tokenStore())
                 //设置用户信息处理器
-                .userDetailsService((UserDetailsService) userDetailsService)
+                .userDetailsService(userDetailsService)
                 //设置认证处理器
                 .authenticationManager(authenticationManager)
                 //token增强

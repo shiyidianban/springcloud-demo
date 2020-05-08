@@ -1,4 +1,4 @@
-package com.springcloud.demo.client.config;
+package com.springcloud.demo.common.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

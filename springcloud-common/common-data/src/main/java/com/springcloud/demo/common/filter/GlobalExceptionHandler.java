@@ -1,4 +1,4 @@
-package com.springcloud.demo.client.filter;
+package com.springcloud.demo.common.filter;
 
 import com.springcloud.demo.common.exception.ServiceException;
 import com.springcloud.demo.common.util.Result;

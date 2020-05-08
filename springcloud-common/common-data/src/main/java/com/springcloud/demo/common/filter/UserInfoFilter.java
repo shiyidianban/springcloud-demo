@@ -1,4 +1,4 @@
-package com.springcloud.demo.client.filter;
+package com.springcloud.demo.common.filter;
 
 import com.springcloud.demo.common.enums.RespEnum;
 import com.springcloud.demo.common.util.ConstantsUtil;
@@ -28,7 +28,8 @@ public class UserInfoFilter implements Filter {
             "/v2/api-docs",
             "/swagger-resources",
             "/webjars",
-            "/swagger-ui.html"
+            "/swagger-ui.html",
+            "/druid",
     };
 
     @Override

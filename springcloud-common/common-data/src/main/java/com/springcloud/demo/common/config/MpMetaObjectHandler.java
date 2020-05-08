@@ -1,7 +1,7 @@
-package com.springcloud.demo.client.config;
+package com.springcloud.demo.common.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.springcloud.demo.client.filter.UserInfoLocal;
+import com.springcloud.demo.common.filter.UserInfoLocal;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

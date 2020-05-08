@@ -7,7 +7,6 @@ import com.springcloud.demo.auth.entity.SysUser;
 import com.springcloud.demo.auth.service.SysMenuService;
 import com.springcloud.demo.auth.service.SysRoleService;
 import com.springcloud.demo.auth.service.SysUserService;
-import com.springcloud.demo.auth.service.UserDetailsService;
 import com.springcloud.demo.common.exception.ServiceException;
 import com.springcloud.demo.common.util.ObjectUtils;
 import com.springcloud.demo.common.util.RedisHelper;
@@ -16,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.HashSet;
 import java.util.List;

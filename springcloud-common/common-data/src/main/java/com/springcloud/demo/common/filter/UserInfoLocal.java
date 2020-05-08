@@ -1,7 +1,4 @@
-package com.springcloud.demo.client.filter;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.springcloud.demo.common.filter;
 
 /**
  * 当前用户登录信息
