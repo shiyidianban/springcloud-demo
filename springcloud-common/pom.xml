@@ -16,6 +16,7 @@
         <module>common-core</module>
         <module>common-swagger</module>
         <module>common-security</module>
+        <module>common-feign</module>
     </modules>
 
 

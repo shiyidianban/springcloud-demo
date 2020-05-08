@@ -15,6 +15,7 @@ public enum RespEnum {
      * 失败
      */
     FAILED(1, "操作失败"),
+
     /**
      * 未登录
      */
@@ -50,16 +51,12 @@ public enum RespEnum {
         return code;
     }
 
-    ;
-
     /**
      * 描述
      */
     public String getMsg() {
         return msg;
     }
-
-    ;
 
     @Override
     public String toString() {
