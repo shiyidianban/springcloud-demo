@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class ClientFeignFallback implements ClientFeignService {
 
     @Override
-    public Result getBankAccountByUserId(Integer id) {
+    public Result getClientById(Integer id) {
         return Result.restResult(RespEnum.FAILED);
     }
 }
