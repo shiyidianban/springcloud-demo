@@ -6,6 +6,10 @@ spring:
   application:
     name: springcloud-order #指定应用的唯一标识/服务名
 
+  zipkin:
+    # zipkkin dashboard的地址：通过真实IP地址访问
+    baseUrl: http://springcloud-zipkin/
+
   # 配置中心
   cloud:
     config:

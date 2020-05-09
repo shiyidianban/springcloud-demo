@@ -14,6 +14,7 @@
         <module>springcloud-gateway</module>
         <module>springcloud-common</module>
         <module>springcloud-moudle</module>
+        <module>springcloud-zipkin</module>
     </modules>
 
     <!-- 引入spring boot starter的依赖 -->
@@ -35,6 +36,7 @@
         <mysql.version>5.1.45</mysql.version>
         <hutool.version>4.4.5</hutool.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
+        <zipkin.version>2.11.6</zipkin.version>
     </properties>
     <dependencies>
         <!-- 引入Lombok -->

@@ -2,6 +2,7 @@ package com.springcloud.demo.common.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.springcloud.demo.common.filter.UserInfoLocal;
+import com.springcloud.demo.common.util.ConstantsUtil;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -27,21 +28,21 @@ public class MpMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void insertFill(MetaObject metaObject) {
-        Object createBy = metaObject.getValue("createBy");
-        Object createTime = metaObject.getValue("createTime");
-        Object delFlag = metaObject.getValue("delFlag");
+        Object createBy = metaObject.getValue(ConstantsUtil.CREATE_BY);
+        Object createTime = metaObject.getValue(ConstantsUtil.CREATE_TIME);
+        Object delFlag = metaObject.getValue(ConstantsUtil.DEL_FLAG);
 
         //设置当前登录用户，此处尚未开发权限系统，暂定admin
         if (null == createBy) {
-            this.setFieldValByName("createBy", UserInfoLocal.getUser().getToken(), metaObject);
+            this.setFieldValByName(ConstantsUtil.CREATE_BY, UserInfoLocal.getUser().getToken(), metaObject);
         }
 
         if (null == createTime) {
-            this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
+            this.setFieldValByName(ConstantsUtil.CREATE_TIME, LocalDateTime.now(), metaObject);
         }
 
         //填充delFlag属性
-        this.setFieldValByName("delFlag", delFlagDefaultValue, metaObject);
+        this.setFieldValByName(ConstantsUtil.DEL_FLAG, delFlagDefaultValue, metaObject);
 
         this.updateFill(metaObject);
     }
@@ -53,15 +54,15 @@ public class MpMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        Object updateBy = metaObject.getValue("updateBy");
-        Object updateTime = metaObject.getValue("updateTime");
+        Object updateBy = metaObject.getValue(ConstantsUtil.UPDATE_BY);
+        Object updateTime = metaObject.getValue(ConstantsUtil.UPDATE_TIME);
         //设置当前登录用户，此处尚未开发权限系统，暂定admin
         if (null == updateBy) {
-            this.setFieldValByName("updateBy", UserInfoLocal.getUser().getToken(), metaObject);
+            this.setFieldValByName(ConstantsUtil.UPDATE_BY, UserInfoLocal.getUser().getToken(), metaObject);
         }
 
         if (null == updateTime) {
-            this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+            this.setFieldValByName(ConstantsUtil.UPDATE_TIME, LocalDateTime.now(), metaObject);
         }
     }
 }

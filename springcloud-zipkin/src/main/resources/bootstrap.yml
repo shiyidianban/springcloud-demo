@@ -1,0 +1,39 @@
+server:
+  port: 8081 #服务端口
+
+spring:
+  application:
+    name: springcloud-zipkin #指定应用的唯一标识/服务名
+  datasource:
+    schema: classpath:mysql.sql
+    url: jdbc:mysql://127.0.0.1:3306/spring?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    username: root
+    password: 123456
+    continue-on-error: true
+    driver-class-name: com.mysql.jdbc.Driver
+
+  zipkin:
+    enabled: false
+  sleuth:
+    enabled: false
+
+  main:
+    allow-bean-definition-overriding: true
+# 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true #优先使用IP地址注册
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/ #eureka的注册地址
+
+zipkin:
+  storage:
+    type: mysql
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+

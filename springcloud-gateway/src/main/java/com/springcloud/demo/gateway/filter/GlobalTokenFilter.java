@@ -36,6 +36,7 @@ public class GlobalTokenFilter implements GlobalFilter, Ordered {
         if (ObjectUtils.isNull(tokenList)) {
             log.error(Result.restResult(RespEnum.NO_LOGIN).toString());
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            exchange.getResponse().getHeaders().set("Content-Type", "application/json;charset=UTF-8");
             return exchange.getResponse().writeWith(Flux.just(exchange.getResponse().bufferFactory().wrap(Result.restResult(RespEnum.NO_LOGIN).toString().getBytes())));
         }
 
