@@ -12,8 +12,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @date 2020-05-08 14:11
  */
 @EnableEurekaClient
-@EnableFeignClients(value = {"com.springcloud.demo.feign", "com.springcloud.demo.feign.service.fallback"})
-@SpringBootApplication(scanBasePackages = {"com.springcloud.demo.order", "com.springcloud.demo.common"})
+@EnableFeignClients(value = {"com.springcloud.demo.feign"})
+@SpringBootApplication(scanBasePackages = {"com.springcloud.demo.order", "com.springcloud.demo.common", "com.springcloud.demo.feign"})
 public class SpringCloudOrderApplication {
 
     public static void main(String[] args) {
