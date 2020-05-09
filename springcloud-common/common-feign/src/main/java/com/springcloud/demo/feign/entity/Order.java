@@ -1,9 +1,13 @@
 package com.springcloud.demo.feign.entity;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.springcloud.demo.common.serializer.DateJsonDeserializer;
+import com.springcloud.demo.common.serializer.DateJsonSerializer;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 返回到前端的Order信息
@@ -23,9 +27,13 @@ public class Order {
 
     private String orderNum;
 
-    private LocalDateTime createTime;
+    @JsonSerialize(using = DateJsonSerializer.class)
+    @JsonDeserialize(using = DateJsonDeserializer.class)
+    private Date createTime;
 
-    private LocalDateTime updateTime;
+    @JsonSerialize(using = DateJsonSerializer.class)
+    @JsonDeserialize(using = DateJsonDeserializer.class)
+    private Date updateTime;
 
     private String createBy;
 

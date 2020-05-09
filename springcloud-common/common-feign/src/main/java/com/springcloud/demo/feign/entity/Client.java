@@ -1,9 +1,15 @@
 package com.springcloud.demo.feign.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.springcloud.demo.common.serializer.DateJsonDeserializer;
+import com.springcloud.demo.common.serializer.DateJsonSerializer;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -14,6 +20,8 @@ import java.time.LocalDateTime;
  * @since 2020-04-30
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Client implements Serializable {
 
     /**
@@ -39,12 +47,16 @@ public class Client implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    @JsonSerialize(using = DateJsonSerializer.class)
+    @JsonDeserialize(using = DateJsonDeserializer.class)
+    private Date createTime;
 
     /**
      * 最后更新时间
      */
-    private LocalDateTime updateTime;
+    @JsonSerialize(using = DateJsonSerializer.class)
+    @JsonDeserialize(using = DateJsonDeserializer.class)
+    private Date updateTime;
 
     /**
      * 创建人
