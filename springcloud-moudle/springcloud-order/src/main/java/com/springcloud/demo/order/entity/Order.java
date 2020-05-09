@@ -1,6 +1,10 @@
 package com.springcloud.demo.order.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.springcloud.demo.common.serializer.DateJsonDeserializer;
+import com.springcloud.demo.common.serializer.DateJsonSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -40,9 +44,13 @@ public class Order implements Serializable {
     private String orderNum;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @JsonSerialize(using = DateJsonSerializer.class)
+    @JsonDeserialize(using = DateJsonDeserializer.class)
     private Date createTime;
 
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    @JsonSerialize(using = DateJsonSerializer.class)
+    @JsonDeserialize(using = DateJsonDeserializer.class)
     private Date updateTime;
 
     @TableField(value = "create_by", fill = FieldFill.INSERT)

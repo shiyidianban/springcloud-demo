@@ -18,6 +18,10 @@ spring:
       profile: ${spring.profiles.active}  #指定当前工程于config server中的生效环境，此处直接引用spring.profiles.active属性
       uri: http://localhost:8080  #指定配置中心的ip和端口
 
+  devtools:
+    restart:
+      enabled: true
+
 # 注册中心配置
 eureka:
   instance:

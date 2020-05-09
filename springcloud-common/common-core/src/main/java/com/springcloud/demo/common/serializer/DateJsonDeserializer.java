@@ -21,7 +21,7 @@ public class DateJsonDeserializer extends JsonDeserializer<Date> {
             new String[]{"yyyy-MM-dd", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss.S",
                     "yyyy.MM.dd", "yyyy.MM.dd HH:mm", "yyyy.MM.dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss.S",
                     "yyyy/MM/dd", "yyyy/MM/dd HH:mm", "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss.S",
-                    "yyyy-MM-dd'T'HH:mm:ss"};
+                    "yyyy-MM-dd'T'HH:mm:ss.SSSZ"};
 
     @Override
     public Date deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

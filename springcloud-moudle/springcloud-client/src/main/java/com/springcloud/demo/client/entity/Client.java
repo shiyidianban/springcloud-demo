@@ -1,6 +1,10 @@
 package com.springcloud.demo.client.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.springcloud.demo.common.serializer.DateJsonDeserializer;
+import com.springcloud.demo.common.serializer.DateJsonSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
@@ -59,6 +63,8 @@ public class Client implements Serializable {
      */
     @ApiModelProperty(value = "创建时间", dataType = "Date ", name = "createTime")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @JsonSerialize(using = DateJsonSerializer.class)
+    @JsonDeserialize(using = DateJsonDeserializer.class)
     private Date createTime;
 
     /**
@@ -66,6 +72,8 @@ public class Client implements Serializable {
      */
     @ApiModelProperty(value = "最后更新时间", dataType = "LocalDateTime ", name = "updateTime")
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    @JsonSerialize(using = DateJsonSerializer.class)
+    @JsonDeserialize(using = DateJsonDeserializer.class)
     private Date updateTime;
 
     /**
