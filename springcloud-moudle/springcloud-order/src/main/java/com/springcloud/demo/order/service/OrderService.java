@@ -21,7 +21,7 @@ public interface OrderService extends IService<Order> {
      * @param order
      * @return
      */
-    Result addClient(Order order);
+    Result addOrder(Order order);
 
     /**
      * 根据id获取order
@@ -29,7 +29,7 @@ public interface OrderService extends IService<Order> {
      * @param id order的id
      * @return
      */
-    Result getClientById(Integer id);
+    Result getOrderById(Integer id);
 
     /**
      * 根据id删除client
@@ -37,7 +37,7 @@ public interface OrderService extends IService<Order> {
      * @param id client的id
      * @return
      */
-    Result removeClient(Integer id);
+    Result removeOrder(Integer id);
 
     /**
      * 分页查询
@@ -46,6 +46,6 @@ public interface OrderService extends IService<Order> {
      * @param order
      * @return
      */
-    Result getClientPage(Page page, Order order);
+    Result getOrderPage(Page page, Order order);
 
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springcloud.demo.common.enums.RespEnum;
+import com.springcloud.demo.common.filter.UserInfoLocal;
 import com.springcloud.demo.common.util.Result;
 import com.springcloud.demo.feign.dto.OrderDTO;
 import com.springcloud.demo.feign.entity.Client;
@@ -30,7 +31,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private ClientFeignService clientFeignService;
 
     @Override
-    public Result addClient(Order order) {
+    public Result addOrder(Order order) {
         if (this.save(order)) {
             return Result.success(order.getId());
         } else {
@@ -39,7 +40,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public Result getClientById(Integer id) {
+    public Result getOrderById(Integer id) {
         Order order = this.getById(id);
         if (order == null) {
             return Result.success();
@@ -47,17 +48,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         OrderDTO orderDTO = new OrderDTO();
         BeanUtils.copyProperties(order, orderDTO);
-        Result<Client> result = clientFeignService.getClientById(orderDTO.getClientId());
+        Result<Client> result = clientFeignService.getClientById(UserInfoLocal.getUser().getToken(), orderDTO.getClientId());
         if (result == null || result.getCode() != RespEnum.SUCCESS.getCode()) {
             return Result.success(orderDTO);
         }
 
         orderDTO.setClient(result.getData());
-        return Result.success(this.getById(id));
+        return Result.success(orderDTO);
     }
 
     @Override
-    public Result removeClient(Integer id) {
+    public Result removeOrder(Integer id) {
         if (this.removeById(id)) {
             return Result.success(id);
         } else {
@@ -66,7 +67,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public Result getClientPage(Page page, Order order) {
+    public Result getOrderPage(Page page, Order order) {
         return Result.success(this.page(page, new QueryWrapper<>(order)));
     }
 }

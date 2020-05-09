@@ -36,7 +36,7 @@ public class UserInfoFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         RequestFacade requestFacade = (RequestFacade) servletRequest;
         if (!inWhiteListUrl(requestFacade.getRequestURI()) && !setLoginUserInfo(requestFacade)) {
-            servletResponse.setContentType("text/html;charset=UTF-8");
+            servletResponse.setContentType("application/json; charset=utf-8");
             servletResponse.getWriter().print(Result.restResult(RespEnum.NO_LOGIN).toString());
             return;
         }

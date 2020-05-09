@@ -26,8 +26,8 @@ public class OrderController {
      * 新增
      */
     @PostMapping
-    public Result addClient(@RequestBody Order order) {
-        return orderService.addClient(order);
+    public Result addOrder(@RequestBody Order order) {
+        return orderService.addOrder(order);
     }
 
     /**
@@ -37,8 +37,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("/{id}")
-    public Result getClientById(@PathVariable Integer id) {
-        return orderService.getClientById(id);
+    public Result getOrderById(@PathVariable Integer id) {
+        return orderService.getOrderById(id);
     }
 
     /**
@@ -48,8 +48,8 @@ public class OrderController {
      * @return
      */
     @DeleteMapping("/{id}")
-    public Result removeClient(@PathVariable Integer id) {
-        return orderService.removeClient(id);
+    public Result removeOrder(@PathVariable Integer id) {
+        return orderService.removeOrder(id);
     }
 
     /**
@@ -60,8 +60,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("/page")
-    public Result getClientPage(Page page, Order order) {
-        return orderService.getClientPage(page, order);
+    public Result getOrderPage(Page page, Order order) {
+        return orderService.getOrderPage(page, order);
     }
 }
 
