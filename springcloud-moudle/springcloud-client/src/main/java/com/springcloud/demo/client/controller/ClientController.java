@@ -1,14 +1,9 @@
 package com.springcloud.demo.client.controller;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springcloud.demo.client.entity.Client;
 import com.springcloud.demo.client.service.ClientService;
-import com.springcloud.demo.common.enums.RespEnum;
-import com.springcloud.demo.common.util.ObjectUtils;
-import com.springcloud.demo.common.util.RedisHelper;
 import com.springcloud.demo.common.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -33,9 +28,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @Autowired
-    private RedisHelper redisHelper;
-
     /**
      * 新增client
      *
@@ -48,13 +40,7 @@ public class ClientController {
     })
     @PostMapping
     public Result addClient(@RequestBody Client client) {
-        if (this.clientService.save(client)) {
-            //填充缓存，key为client_${id}
-            this.redisHelper.set("client_" + client.getId(), JSONObject.toJSONString(client));
-            return Result.success(client.getId());
-        } else {
-            return Result.restResult(RespEnum.FAILED);
-        }
+        return clientService.addClient(client);
     }
 
     /**
@@ -69,13 +55,7 @@ public class ClientController {
     })
     @GetMapping("/{id}")
     public Result getClientById(@PathVariable Integer id) {
-        // 首先从缓存获取
-        Client client = JSONObject.parseObject(this.redisHelper.get("client_"+id), Client.class);
-        if(ObjectUtils.isNotNull(client)){
-            return Result.success(client);
-        }
-
-        return Result.success(this.clientService.getById(id));
+        return clientService.getClientById(id);
     }
 
     /**
@@ -90,11 +70,7 @@ public class ClientController {
     })
     @DeleteMapping("/{id}")
     public Result removeClient(@PathVariable Integer id) {
-        if (this.clientService.removeById(id)) {
-            return Result.success(id);
-        } else {
-            return Result.restResult(RespEnum.FAILED);
-        }
+        return clientService.removeClient(id);
     }
 
     /**
@@ -112,7 +88,7 @@ public class ClientController {
     })
     @GetMapping("/page")
     public Result getClientPage(Page page, Client client) {
-        return Result.success(this.clientService.page(page, new QueryWrapper<>(client)));
+        return clientService.getClientPage(page, client);
     }
 
     /**

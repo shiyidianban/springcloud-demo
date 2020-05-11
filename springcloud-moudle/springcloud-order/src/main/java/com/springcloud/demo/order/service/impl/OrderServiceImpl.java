@@ -70,4 +70,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public Result getOrderPage(Page page, Order order) {
         return Result.success(this.page(page, new QueryWrapper<>(order)));
     }
+
+    @Override
+    public Result getOrderListByClientId(Integer clientId) {
+        QueryWrapper<Order> orderQueryWrapper = new QueryWrapper<>();
+        orderQueryWrapper.eq("client_id", clientId);
+        return Result.success(this.list(orderQueryWrapper));
+    }
 }

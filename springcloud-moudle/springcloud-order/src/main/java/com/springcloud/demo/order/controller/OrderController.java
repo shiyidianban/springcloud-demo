@@ -63,5 +63,16 @@ public class OrderController {
     public Result getOrderPage(Page page, Order order) {
         return orderService.getOrderPage(page, order);
     }
+
+    /**
+     * 根据模块获取订单列表
+     *
+     * @param clientId
+     * @return
+     */
+    @GetMapping("/orderListByClientId")
+    public Result getOrderListByClientId(Integer clientId) {
+        return orderService.getOrderListByClientId(clientId);
+    }
 }
 

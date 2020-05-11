@@ -48,4 +48,12 @@ public interface OrderService extends IService<Order> {
      */
     Result getOrderPage(Page page, Order order);
 
+    /**
+     * 根据模块Id，获取订单列表
+     *
+     * @param clientId
+     * @return
+     */
+    Result getOrderListByClientId(Integer clientId);
+
 }
