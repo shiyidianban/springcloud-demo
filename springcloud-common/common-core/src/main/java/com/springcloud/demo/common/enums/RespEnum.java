@@ -23,7 +23,10 @@ public enum RespEnum {
     /**
      * 无权限
      */
-    NO_PERMISSION(12, "无权限操作");
+    NO_PERMISSION(12, "无权限操作"),
+
+    NO_IP_ADDRESS(13, "[%s]，IP地址未加入白名单");
+
     private final long code;
     private final String msg;
 

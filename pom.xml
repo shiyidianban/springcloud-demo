@@ -15,6 +15,7 @@
         <module>springcloud-common</module>
         <module>springcloud-moudle</module>
         <module>springcloud-zipkin</module>
+        <module>springcloud-zuul</module>
     </modules>
 
     <!-- 引入spring boot starter的依赖 -->

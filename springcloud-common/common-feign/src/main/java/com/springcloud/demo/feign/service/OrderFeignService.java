@@ -27,7 +27,6 @@ public interface OrderFeignService {
      * @param clientId
      * @return
      */
-//    @RequestMapping(value = "/order/orderListByClientId", method= RequestMethod.GET)
     @GetMapping("/order/orderListByClientId")
     Result<List<Order>> getOrderListByClientId(@RequestHeader(ConstantsUtil.TOKEN) String token, @RequestParam("clientId") Integer clientId);
 }
