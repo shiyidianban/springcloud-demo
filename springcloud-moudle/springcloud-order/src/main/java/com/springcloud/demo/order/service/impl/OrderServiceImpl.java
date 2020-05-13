@@ -35,7 +35,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         if (this.save(order)) {
             return Result.success(order.getId());
         } else {
-            return Result.restResult(RespEnum.FAILED);
+            return Result.failed(RespEnum.FAILED);
         }
     }
 
@@ -62,7 +62,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         if (this.removeById(id)) {
             return Result.success(id);
         } else {
-            return Result.restResult(RespEnum.FAILED);
+            return Result.failed(RespEnum.FAILED);
         }
     }
 

@@ -19,6 +19,6 @@ public class OrderFeignFallbackImpl implements OrderFeignService {
 
     @Override
     public Result<List<Order>> getOrderListByClientId(String token, Integer clientId) {
-        return Result.restResult(RespEnum.FAILED);
+        return Result.failed(RespEnum.FAILED);
     }
 }

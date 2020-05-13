@@ -16,6 +16,6 @@ public class ClientFeignFallbackImpl implements ClientFeignService {
 
     @Override
     public Result getClientById(String token, Integer id) {
-        return Result.restResult(RespEnum.FAILED);
+        return Result.failed(RespEnum.FAILED);
     }
 }

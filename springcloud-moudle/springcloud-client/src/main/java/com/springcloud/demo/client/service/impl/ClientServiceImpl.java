@@ -54,7 +54,7 @@ public class ClientServiceImpl extends ServiceImpl<ClientMapper, Client> impleme
             this.redisHelper.set("client_" + client.getId(), JSONObject.toJSONString(client));
             return Result.success(client.getId());
         } else {
-            return Result.restResult(RespEnum.FAILED);
+            return Result.failed(RespEnum.FAILED);
         }
     }
 
@@ -94,7 +94,7 @@ public class ClientServiceImpl extends ServiceImpl<ClientMapper, Client> impleme
         if (this.removeById(id)) {
             return Result.success(id);
         } else {
-            return Result.restResult(RespEnum.FAILED);
+            return Result.failed(RespEnum.FAILED);
         }
     }
 

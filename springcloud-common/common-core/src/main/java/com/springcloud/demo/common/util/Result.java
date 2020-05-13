@@ -1,6 +1,7 @@
 package com.springcloud.demo.common.util;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.springcloud.demo.common.enums.RespEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -29,13 +30,18 @@ public class Result<T> implements Serializable {
      */
     private String msg;
 
+    /**
+     * 是否成功
+     */
+    private Boolean success;
+
     public Result() {
         // to do nothing
     }
 
     @Override
     public String toString() {
-        return JSONObject.toJSONString(this);
+        return JSON.toJSONString(this, SerializerFeature.WriteMapNullValue, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     /**
@@ -46,8 +52,8 @@ public class Result<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public static <T> Result<T> restResult(T data, RespEnum resp) {
-        return restResult(data, resp.getCode(), resp.getMsg());
+    public static <T> Result<T> restResult(T data, RespEnum resp, Boolean success) {
+        return restResult(data, resp.getCode(), resp.getMsg(), success);
     }
 
     /**
@@ -57,8 +63,8 @@ public class Result<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public static <T> Result<T> restResult(RespEnum resp) {
-        return restResult(null, resp.getCode(), resp.getMsg());
+    public static <T> Result<T> restResult(RespEnum resp, Boolean success) {
+        return restResult(null, resp.getCode(), resp.getMsg(), success);
     }
 
     /**
@@ -70,11 +76,12 @@ public class Result<T> implements Serializable {
      * @param <T>
      * @return
      */
-    private static <T> Result<T> restResult(T data, long code, String msg) {
+    private static <T> Result<T> restResult(T data, long code, String msg, Boolean success) {
         Result<T> apiResult = new Result<>();
         apiResult.setCode(code);
         apiResult.setData(data);
         apiResult.setMsg(msg);
+        apiResult.setSuccess(success);
         return apiResult;
     }
 
@@ -85,7 +92,7 @@ public class Result<T> implements Serializable {
      * @return
      */
     public static <T> Result<T> success() {
-        return restResult(RespEnum.SUCCESS);
+        return restResult(RespEnum.SUCCESS, true);
     }
 
     /**
@@ -96,7 +103,7 @@ public class Result<T> implements Serializable {
      * @return
      */
     public static <T> Result<T> success(T data) {
-        return restResult(data, RespEnum.SUCCESS);
+        return restResult(data, RespEnum.SUCCESS, true);
     }
 
     /**
@@ -107,11 +114,11 @@ public class Result<T> implements Serializable {
      * @return
      */
     public static <T> Result<T> failed(String msg) {
-        return restResult(null, RespEnum.FAILED.getCode(), msg);
+        return restResult(null, RespEnum.FAILED.getCode(), msg, false);
     }
 
-    public static <T> Result<T> failed(long code,String msg) {
-        return restResult(null, code, msg);
+    public static <T> Result<T> failed(long code, String msg) {
+        return restResult(null, code, msg, false);
     }
 
     /**
@@ -122,6 +129,17 @@ public class Result<T> implements Serializable {
      * @return
      */
     public static <T> Result<T> failed(Throwable e) {
-        return restResult(null, RespEnum.FAILED.getCode(), e.getMessage());
+        return restResult(null, RespEnum.FAILED.getCode(), e.getMessage(), false);
+    }
+
+    /**
+     * 封转错误枚举类
+     *
+     * @param respEnum 枚举类
+     * @param <T>
+     * @return
+     */
+    public static <T> Result<T> failed(RespEnum respEnum) {
+        return restResult(null, respEnum, false);
     }
 }
