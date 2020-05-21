@@ -85,11 +85,11 @@ public class BaZiUtils {
             i--;
             monthGanZhi -= 12;
         }
-        //农历年份
+        // 农历年份
         int myYear = i;
-        //1864年是甲子年
+        // 1864年是甲子年
         yearGanZhi = myYear - 1864;
-        //哪个月是闰月
+        // 哪个月是闰月
         int leap = lunar_info[myYear - 1900] & 0xf;
         boolean isLeap = false;
         int daysOfLeapMonth = 0;
@@ -190,7 +190,7 @@ public class BaZiUtils {
     }
 
     public static void main(String[] args) {
-        BaZi a = initGanZhi("1998-07-24 17:30");
+        BaZi a = initGanZhi("1995-07-24 17:30");
         log.info(a.getDate());
         log.info(a.toPrint());
         log.info(a.toBaZi());

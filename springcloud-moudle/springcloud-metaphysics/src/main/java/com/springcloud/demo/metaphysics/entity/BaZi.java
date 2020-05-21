@@ -96,18 +96,25 @@ public class BaZi {
         StringBuilder str = new StringBuilder();
         if (tianGanYear != null && diZhiYear != null) {
             str.append(tianGanYear.getWuXing().getValue() + diZhiYear.getWuXing().getValue() + "年 ");
+            str.append(tianGanYear.getDesc() + diZhiYear.getDesc() + "  ");
         }
 
         if (tianGanMonth != null && diZhiMonth != null) {
             str.append(tianGanMonth.getWuXing().getValue() + diZhiMonth.getWuXing().getValue() + "月 ");
+            str.append(tianGanMonth.getDesc() + diZhiMonth.getDesc() + "  ");
+
         }
 
         if (tianGanDay != null && diZhiDay != null) {
             str.append(tianGanDay.getWuXing().getValue() + diZhiDay.getWuXing().getValue() + "日 ");
+            str.append(tianGanDay.getDesc() + diZhiDay.getDesc() + "  ");
+
         }
 
         if (diZhiTime != null) {
-            str.append(tianGanTime.getWuXing().getValue() + diZhiTime.getWuXing().getValue() + "时");
+            str.append(tianGanTime.getWuXing().getValue() + diZhiTime.getWuXing().getValue() + "时 ");
+            str.append(tianGanTime.getDesc() + diZhiTime.getDesc() + " ");
+
         }
 
         return String.valueOf(str);

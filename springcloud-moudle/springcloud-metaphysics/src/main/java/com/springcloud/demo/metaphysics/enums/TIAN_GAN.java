@@ -13,25 +13,25 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum TIAN_GAN {
 
-    JIA("甲", WU_XING.MU),
+    JIA("甲", "栋梁之木", WU_XING.MU),
 
-    YI("乙", WU_XING.MU),
+    YI("乙", "花果之木", WU_XING.MU),
 
-    BING("丙", WU_XING.HUO),
+    BING("丙", "太阳之火", WU_XING.HUO),
 
-    DING("丁", WU_XING.HUO),
+    DING("丁", "灯烛之火", WU_XING.HUO),
 
-    WU("戊", WU_XING.TU),
+    WU("戊", "城墙之土", WU_XING.TU),
 
-    JI("己", WU_XING.TU),
+    JI("己", "田园之土", WU_XING.TU),
 
-    GENG("庚", WU_XING.JIN),
+    GENG("庚", "斧钺之金", WU_XING.JIN),
 
-    XIN("辛", WU_XING.JIN),
+    XIN("辛", "首饰之金", WU_XING.JIN),
 
-    REN("壬", WU_XING.SHUI),
+    REN("壬", "江河之水", WU_XING.SHUI),
 
-    GUI("癸", WU_XING.SHUI),
+    GUI("癸", "雨露之水", WU_XING.SHUI),
     ;
 
 
@@ -39,6 +39,8 @@ public enum TIAN_GAN {
      * 值
      */
     private String value;
+
+    private String desc;
 
     /**
      * 五行
