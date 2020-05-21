@@ -29,6 +29,8 @@ public class BaZi {
 
     private DI_ZHI diZhiDay;
 
+    private TIAN_GAN tianGanTime;
+
     private DI_ZHI diZhiTime;
 
     private String date;
@@ -47,7 +49,7 @@ public class BaZi {
                 '}';
     }
 
-    public String toBaZi() {
+    public String toPrint() {
         StringBuilder str = new StringBuilder();
         str.append("农历 ");
         if (tianGanYear != null && diZhiYear != null) {
@@ -69,6 +71,27 @@ public class BaZi {
         return String.valueOf(str);
     }
 
+    public String toBaZi() {
+        StringBuilder str = new StringBuilder();
+        if (tianGanYear != null && diZhiYear != null) {
+            str.append(tianGanYear.getValue() + diZhiYear.getValue() + " ");
+        }
+
+        if (tianGanMonth != null && diZhiMonth != null) {
+            str.append(tianGanMonth.getValue() + diZhiMonth.getValue() + " ");
+        }
+
+        if (tianGanDay != null && diZhiDay != null) {
+            str.append(tianGanDay.getValue() + diZhiDay.getValue() + " ");
+        }
+
+        if (diZhiTime != null) {
+            str.append(tianGanTime.getValue() + diZhiTime.getValue());
+        }
+
+        return String.valueOf(str);
+    }
+
     public String toWuXing() {
         StringBuilder str = new StringBuilder();
         if (tianGanYear != null && diZhiYear != null) {
@@ -84,7 +107,7 @@ public class BaZi {
         }
 
         if (diZhiTime != null) {
-            str.append(diZhiTime.getWuXing().getValue());
+            str.append(tianGanTime.getWuXing().getValue() + diZhiTime.getWuXing().getValue() + "时");
         }
 
         return String.valueOf(str);

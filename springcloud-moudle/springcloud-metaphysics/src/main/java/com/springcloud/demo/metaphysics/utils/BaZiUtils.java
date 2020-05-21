@@ -124,17 +124,46 @@ public class BaZiUtils {
 
         if (hour >= 23 || hour < 1) {
             hour = 0;
-        } else {
+        } else if (hour % 2 == 0) {
             hour = hour / 2;
+        } else {
+            hour = hour / 2 + 1;
         }
 
         BaZi baZi = new BaZi();
+        baZi.setDate(date);
         baZi.setTianGanYear(TIAN_GAN.get(yearGanZhi % 10));
         baZi.setDiZhiYear(DI_ZHI.get(yearGanZhi % 12));
         baZi.setTianGanMonth(TIAN_GAN.get(monthGanZhi % 10));
         baZi.setDiZhiMonth(DI_ZHI.get(monthGanZhi % 12));
         baZi.setTianGanDay(TIAN_GAN.get(dayGanZhi % 10));
         baZi.setDiZhiDay(DI_ZHI.get(dayGanZhi % 12));
+        // 顺推天干时辰
+        switch (baZi.getTianGanDay()) {
+            case JIA:
+            case JI:
+                baZi.setTianGanTime(TIAN_GAN.get(hour % 10));
+                break;
+            case YI:
+            case GENG:
+                baZi.setTianGanTime(TIAN_GAN.get((hour + 2) % 10));
+                break;
+            case BING:
+            case XIN:
+                baZi.setTianGanTime(TIAN_GAN.get((hour + 4) % 10));
+                break;
+            case DING:
+            case REN:
+                baZi.setTianGanTime(TIAN_GAN.get((hour + 6) % 10));
+                break;
+            case WU:
+            case GUI:
+                baZi.setTianGanTime(TIAN_GAN.get((hour + 8) % 10));
+                break;
+            default:
+                break;
+        }
+
         baZi.setDiZhiTime(DI_ZHI.get(hour % 12));
         return baZi;
     }
@@ -161,7 +190,9 @@ public class BaZiUtils {
     }
 
     public static void main(String[] args) {
-        BaZi a = initGanZhi("1995-10-20 10:00");
+        BaZi a = initGanZhi("1998-07-24 17:30");
+        log.info(a.getDate());
+        log.info(a.toPrint());
         log.info(a.toBaZi());
         log.info(a.toWuXing());
     }
