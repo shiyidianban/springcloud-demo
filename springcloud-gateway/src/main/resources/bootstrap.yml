@@ -11,7 +11,7 @@ spring:
       fail-fast: true
       name: ${spring.application.name}
       profile: ${spring.profiles.active}
-      uri: http://localhost:8080
+      uri: http://localhost:8088
 
     #网关配置中心
     gateway:
@@ -37,6 +37,9 @@ spring:
           predicates: #转发谓词，用于设置匹配路由的规则
             - Path=/order/** #通过请求路径匹配
             - Method=GET #通过请求方式匹配
+          filters:
+            - StripPrefix=1
+            - AddResponseHeader=X-Response-Default-Foo, Default-Bar
 
         - id: springcloud-oauth
           uri: lb://springcloud-oauth

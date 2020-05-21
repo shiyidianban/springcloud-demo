@@ -16,7 +16,7 @@ spring:
       fail-fast: true
       name: datasource,redis  #指定当前工程于config server中的应用名，此处直接引用spring.application.name属性
       profile: ${spring.profiles.active}  #指定当前工程于config server中的生效环境，此处直接引用spring.profiles.active属性
-      uri: http://localhost:8080  #指定配置中心的ip和端口
+      uri: http://localhost:8088  #指定配置中心的ip和端口
 
   devtools:
     restart:

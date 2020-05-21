@@ -1,5 +1,5 @@
 server:
-  port: 8080 #端口
+  port: 8088 #端口
 spring:
   application:
     name: springcloud-config-server #应用名

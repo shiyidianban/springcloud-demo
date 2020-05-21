@@ -22,6 +22,7 @@ zuul:
     springcloud-order:
       path: /order/**
       serviceId: springcloud-order
+      stripPrefix: false
     baidu:
       url: https://www.baidu.com
     simple:
@@ -45,5 +46,5 @@ zuul:
         type: origin #可选 限流方式
 
   whitelist:    # zuul白名单配置
-    springcloud-order: localhost,0:0:0:0:0:0:0:1,127.0.0.1,2.0.1.23
-    springcloud-client: localhost,0:0:0:0:0:0:0:1,127.0.0.1,2.0.1.23
+    springcloud-order: localhost,0:0:0:0:0:0:0:1,127.0.0.1,2.0.1.28
+    springcloud-client: localhost,0:0:0:0:0:0:0:1,127.0.0.1
