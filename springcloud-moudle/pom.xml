@@ -15,6 +15,7 @@
         <module>springcloud-client</module>
         <module>springcloud-auth</module>
         <module>springcloud-order</module>
+        <module>springcloud-metaphysics</module>
     </modules>
 
 
