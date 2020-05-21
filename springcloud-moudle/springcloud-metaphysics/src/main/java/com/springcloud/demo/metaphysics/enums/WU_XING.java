@@ -21,7 +21,15 @@ public enum WU_XING {
 
     HUO("火", "南方"),
 
-    TU("土", "中央");
+    TU("土", "中央"),
+
+    DONG_BEI("", "东北方"),
+
+    DONG_NAN("", "东南方"),
+
+    XI_BEI("", "西北方"),
+
+    XI_NAN("", "西南方");
 
     private String value;
 
