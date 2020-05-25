@@ -190,7 +190,7 @@ public class BaZiUtils {
     }
 
     public static void main(String[] args) {
-        BaZi a = initGanZhi("1995-07-24 17:30");
+        BaZi a = initGanZhi("2020-05-25 18:30");
         log.info(a.getDate());
         log.info(a.toPrint());
         log.info(a.toBaZi());
