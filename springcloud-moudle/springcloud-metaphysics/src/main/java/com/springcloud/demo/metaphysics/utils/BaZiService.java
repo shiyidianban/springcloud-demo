@@ -182,7 +182,7 @@ public class BaZiService {
     }
 
     /**
-     * @param bazi 庚子年辛巳月戊辰日
+     * @param bazi 庚子年 辛巳月 戊辰日 18:00
      * @return
      */
     public BaZi getBaZiFromGanZhi(String bazi) {
