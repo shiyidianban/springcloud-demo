@@ -35,4 +35,14 @@ public enum BA_GUA {
 
     private WU_XING wuXing;
 
+    public static BA_GUA getByWU_XING(WU_XING wu_xing) {
+        for (BA_GUA ba_gua : values()) {
+            if (ba_gua.getWuXing().equals(wu_xing)) {
+                return ba_gua;
+            }
+        }
+
+        return null;
+    }
+
 }

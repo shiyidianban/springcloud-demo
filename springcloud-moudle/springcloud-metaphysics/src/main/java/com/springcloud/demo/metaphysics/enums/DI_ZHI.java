@@ -60,4 +60,14 @@ public enum DI_ZHI {
     public static DI_ZHI get(int i) {
         return values()[i];
     }
+
+    public static DI_ZHI getByValue(String value) {
+        for (DI_ZHI di_zhi : values()) {
+            if (di_zhi.getValue().equals(value)) {
+                return di_zhi;
+            }
+        }
+
+        return null;
+    }
 }

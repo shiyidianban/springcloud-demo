@@ -3,7 +3,6 @@ package com.springcloud.demo.metaphysics.utils;
 import com.springcloud.demo.metaphysics.entity.BaZi;
 import com.springcloud.demo.metaphysics.enums.DI_ZHI;
 import com.springcloud.demo.metaphysics.enums.TIAN_GAN;
-import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,8 +14,13 @@ import java.util.Calendar;
  * @author FLY
  * @date 2020-05-21 11:23
  */
-@Slf4j
-public class BaZiUtils {
+public class BaZiService {
+
+    private static final String DEMO = "庚子年 辛巳月 戊辰日 18:00";
+    /**
+     * 格式化八字
+     */
+    private static final String[] DEMOS = DEMO.split(" ");
 
     /**
      * 关于阴历的相关信息
@@ -45,7 +49,7 @@ public class BaZiUtils {
             0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0};
 
 
-    public static BaZi initGanZhi(String date) {
+    public BaZi initGanZhi(String date) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(date, df);
         int dayGanZhi, monthGanZhi, yearGanZhi;
@@ -122,13 +126,6 @@ public class BaZiUtils {
             --monthGanZhi;
         }
 
-        if (hour >= 23 || hour < 1) {
-            hour = 0;
-        } else if (hour % 2 == 0) {
-            hour = hour / 2;
-        } else {
-            hour = hour / 2 + 1;
-        }
 
         BaZi baZi = new BaZi();
         baZi.setDate(date);
@@ -138,6 +135,23 @@ public class BaZiUtils {
         baZi.setDiZhiMonth(DI_ZHI.get(monthGanZhi % 12));
         baZi.setTianGanDay(TIAN_GAN.get(dayGanZhi % 10));
         baZi.setDiZhiDay(DI_ZHI.get(dayGanZhi % 12));
+        // 顺推天干地支时辰
+        setBaZiTianGanTime(baZi, hour);
+        return baZi;
+    }
+
+    /**
+     * 设置顺推天干地支时辰
+     */
+    private static void setBaZiTianGanTime(BaZi baZi, int hour) {
+        if (hour >= 23 || hour < 1) {
+            hour = 0;
+        } else if (hour % 2 == 0) {
+            hour = hour / 2;
+        } else {
+            hour = hour / 2 + 1;
+        }
+
         // 顺推天干时辰
         switch (baZi.getTianGanDay()) {
             case JIA:
@@ -165,7 +179,27 @@ public class BaZiUtils {
         }
 
         baZi.setDiZhiTime(DI_ZHI.get(hour % 12));
-        return baZi;
+    }
+
+    /**
+     * @param bazi 庚子年辛巳月戊辰日
+     * @return
+     */
+    public BaZi getBaZiFromGanZhi(String bazi) {
+        String[] ganZhi = bazi.split(" ");
+        if (ganZhi.length == DEMOS.length) {
+            BaZi baZi = new BaZi();
+            baZi.setTianGanYear(TIAN_GAN.getByValue(ganZhi[0].split("")[0]));
+            baZi.setDiZhiYear(DI_ZHI.getByValue(ganZhi[0].split("")[1]));
+            baZi.setTianGanMonth(TIAN_GAN.getByValue(ganZhi[1].split("")[0]));
+            baZi.setDiZhiMonth(DI_ZHI.getByValue(ganZhi[1].split("")[1]));
+            baZi.setTianGanDay(TIAN_GAN.getByValue(ganZhi[2].split("")[0]));
+            baZi.setDiZhiDay(DI_ZHI.getByValue(ganZhi[2].split("")[1]));
+            setBaZiTianGanTime(baZi, Integer.valueOf(ganZhi[3].split(":")[0]));
+            return baZi;
+        }
+
+        return null;
     }
 
     /**
@@ -190,11 +224,13 @@ public class BaZiUtils {
     }
 
     public static void main(String[] args) {
-        BaZi a = initGanZhi("2020-05-25 18:30");
-        log.info(a.getDate());
-        log.info(a.toPrint());
-        log.info(a.toBaZi());
-        log.info(a.toWuXing());
+////        BaZi a = initGanZhi("2020-05-25 18:30");
+//        System.out.println(a.toPrint());
+////        BaZi b = getBaZiFromGanZhi("庚子年 辛巳月 戊辰日 18:00");
+//        System.out.println(b.toPrint());
+//        System.out.println(a.toPrint());
+//        System.out.println(a.toBaZi());
+//        System.out.println(a.toWuXing());
     }
 
 }

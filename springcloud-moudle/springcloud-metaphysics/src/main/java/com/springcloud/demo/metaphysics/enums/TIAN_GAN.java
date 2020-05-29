@@ -50,4 +50,14 @@ public enum TIAN_GAN {
     public static TIAN_GAN get(int i) {
         return values()[i];
     }
+
+    public static TIAN_GAN getByValue(String value) {
+        for (TIAN_GAN tian_gan : values()) {
+            if (tian_gan.getValue().equals(value)) {
+                return tian_gan;
+            }
+        }
+
+        return null;
+    }
 }
