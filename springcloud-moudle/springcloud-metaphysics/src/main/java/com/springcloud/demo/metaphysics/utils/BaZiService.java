@@ -48,10 +48,14 @@ public class BaZiService {
             0x0d250, 0x0d520, 0x0dd45, 0x0b5a0, 0x056d0, 0x055b2, 0x049b0,
             0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0};
 
-
     public BaZi initGanZhi(String date) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(date, df);
+        return initGanZhi(dateTime);
+    }
+
+
+    public BaZi initGanZhi(LocalDateTime dateTime) {
         int dayGanZhi, monthGanZhi, yearGanZhi;
         int year = dateTime.getYear();
         int month = dateTime.getMonthValue();
@@ -128,7 +132,6 @@ public class BaZiService {
 
 
         BaZi baZi = new BaZi();
-        baZi.setDate(date);
         baZi.setTianGanYear(TIAN_GAN.get(yearGanZhi % 10));
         baZi.setDiZhiYear(DI_ZHI.get(yearGanZhi % 12));
         baZi.setTianGanMonth(TIAN_GAN.get(monthGanZhi % 10));

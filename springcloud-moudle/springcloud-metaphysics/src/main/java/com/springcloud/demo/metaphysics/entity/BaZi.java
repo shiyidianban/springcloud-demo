@@ -65,7 +65,7 @@ public class BaZi {
         }
 
         if (diZhiTime != null) {
-            str.append(diZhiTime.getValue() + "时 " + diZhiTime.getTime());
+            str.append(tianGanTime.getValue() + diZhiTime.getValue() + "时 " + diZhiTime.getTime());
         }
 
         return String.valueOf(str);
