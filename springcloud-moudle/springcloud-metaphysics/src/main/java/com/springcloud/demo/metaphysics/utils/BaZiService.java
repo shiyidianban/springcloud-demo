@@ -48,14 +48,14 @@ public class BaZiService {
             0x0d250, 0x0d520, 0x0dd45, 0x0b5a0, 0x056d0, 0x055b2, 0x049b0,
             0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0};
 
-    public BaZi initGanZhi(String date) {
+    public static BaZi initGanZhi(String date) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(date, df);
         return initGanZhi(dateTime);
     }
 
 
-    public BaZi initGanZhi(LocalDateTime dateTime) {
+    public static BaZi initGanZhi(LocalDateTime dateTime) {
         int dayGanZhi, monthGanZhi, yearGanZhi;
         int year = dateTime.getYear();
         int month = dateTime.getMonthValue();
@@ -188,7 +188,7 @@ public class BaZiService {
      * @param bazi 庚子年 辛巳月 戊辰日 18:00
      * @return
      */
-    public BaZi getBaZiFromGanZhi(String bazi) {
+    public static BaZi getBaZiFromGanZhi(String bazi) {
         String[] ganZhi = bazi.split(" ");
         if (ganZhi.length == DEMOS.length) {
             BaZi baZi = new BaZi();
@@ -227,13 +227,13 @@ public class BaZiService {
     }
 
     public static void main(String[] args) {
-////        BaZi a = initGanZhi("2020-05-25 18:30");
-//        System.out.println(a.toPrint());
-////        BaZi b = getBaZiFromGanZhi("庚子年 辛巳月 戊辰日 18:00");
-//        System.out.println(b.toPrint());
-//        System.out.println(a.toPrint());
-//        System.out.println(a.toBaZi());
-//        System.out.println(a.toWuXing());
+        BaZi a = initGanZhi("2020-05-25 18:30");
+        System.out.println(a.toPrint());
+        BaZi b = getBaZiFromGanZhi("庚子年 辛巳月 戊辰日 18:00");
+        System.out.println(b.toPrint());
+        System.out.println(a.toPrint());
+        System.out.println(a.toBaZi());
+        System.out.println(a.toWuXing());
     }
 
 }

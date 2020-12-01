@@ -21,9 +21,9 @@ public interface ClientFeignService {
     /**
      * 根据id获取client
      *
-     * @param token
-     * @param id
-     * @return
+     * @param tokenfdfdfdf
+     * @param idddf
+     * @return士大夫
      */
     @GetMapping("client/{id}")
     Result<Client> getClientById(@RequestHeader(ConstantsUtil.TOKEN) String token, @PathVariable("id") Integer id);
