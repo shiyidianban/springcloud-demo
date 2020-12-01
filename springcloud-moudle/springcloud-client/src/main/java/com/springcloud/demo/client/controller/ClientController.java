@@ -77,36 +77,24 @@ public class ClientController {
      * 分页查询
      *
      * @param page
-     * @param client
      * @return
      */
     @ApiOperation(value = "获取客户端分页列表", notes = "获取客户端分页列表", response = Client.class, responseContainer = "Item", produces = "application/json")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "current", value = "当前页码", required = true, dataType = "long", paramType = "query"),
-            @ApiImplicitParam(name = "size", value = "当前页最大显示条数", required = true, dataType = "long", paramType = "query"),
-            @ApiImplicitParam(name = "client", value = "客户端对象", required = true, dataType = "Client", paramType = "query")
-    })
     @GetMapping("/page")
-    public Result getClientPage(Page page, Client client) {
-        return clientService.getClientPage(page, client);
+    public Result getClientPage(Page page) {
+        return clientService.getClientPage(page);
     }
 
     /**
      * 自定义分页查询
      *
      * @param page
-     * @param client
      * @return
      */
     @ApiOperation(value = "自定义分页查询", notes = "自定义分页查询", response = Client.class, responseContainer = "Item", produces = "application/json")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "current", value = "当前页码", required = true, dataType = "long", paramType = "query"),
-            @ApiImplicitParam(name = "size", value = "当前页最大显示条数", required = true, dataType = "long", paramType = "query"),
-            @ApiImplicitParam(name = "client", value = "客户端对象", required = true, dataType = "Client", paramType = "query")
-    })
     @GetMapping("/pageAuto")
-    public Result getClientPageAuto(Page page, Client client) {
-        return Result.success(this.clientService.getClientPageAuto(page, client));
+    public Result getClientPageAuto(Page page) {
+        return Result.success(this.clientService.getClientPageAuto(page));
     }
 }
 

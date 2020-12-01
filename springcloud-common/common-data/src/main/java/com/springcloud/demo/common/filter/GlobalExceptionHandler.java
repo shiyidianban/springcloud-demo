@@ -23,6 +23,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result defaultErrorHandler(HttpServletRequest req, Exception e) {
+        log.error("", e);
+
         if (e instanceof UndeclaredThrowableException) {
             e = (Exception) ((UndeclaredThrowableException) e).getUndeclaredThrowable();
         }
@@ -32,7 +34,6 @@ public class GlobalExceptionHandler {
             return Result.failed(serviceException.getCode(), serviceException.getMessage());
         }
 
-        log.error("", e);
         return Result.failed(e);
     }
 

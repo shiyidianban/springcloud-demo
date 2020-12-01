@@ -46,10 +46,9 @@ public interface ClientService extends IService<Client> {
      * 分页查询
      *
      * @param page
-     * @param client
      * @return
      */
-    Result getClientPage(Page page, Client client);
+    Result getClientPage(Page page);
 
     /**
      * 自定义分页查询
@@ -58,6 +57,6 @@ public interface ClientService extends IService<Client> {
      * @param client 传入对象参数
      * @return
      */
-    IPage<Client> getClientPageAuto(Page page, Client client);
+    IPage<Client> getClientPageAuto(Page page);
 
 }

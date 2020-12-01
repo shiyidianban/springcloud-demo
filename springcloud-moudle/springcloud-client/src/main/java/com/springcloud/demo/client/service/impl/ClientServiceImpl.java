@@ -1,7 +1,6 @@
 package com.springcloud.demo.client.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -102,16 +101,15 @@ public class ClientServiceImpl extends ServiceImpl<ClientMapper, Client> impleme
      * 分页查询
      *
      * @param page
-     * @param client
      * @return
      */
     @Override
-    public Result getClientPage(Page page, Client client) {
-        return Result.success(this.page(page, new QueryWrapper<>(client)));
+    public Result getClientPage(Page page) {
+        return Result.success(this.page(page));
     }
 
     @Override
-    public IPage<Client> getClientPageAuto(Page page, Client client) {
-        return this.baseMapper.selectClientPage(page, client);
+    public IPage<Client> getClientPageAuto(Page page) {
+        return this.baseMapper.selectClientPage(page);
     }
 }
